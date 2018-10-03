@@ -1,0 +1,25 @@
+{
+  "name": "2018-fs-21-frontend-pakhomov",
+  "version": "1.0.0",
+  "description": "track-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikhan333/2018-FS-21-Frontend-Pakhomov.git"
+  },
+  "author": "Mikhail Pakhomov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikhan333/2018-FS-21-Frontend-Pakhomov/issues"
+  },
+  "homepage": "https://github.com/mikhan333/2018-FS-21-Frontend-Pakhomov#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.20.2"
+  }
+}
