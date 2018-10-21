@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pretest": "eslint --ignore-path .gitignore .",
     "clean": "rm -r dist && mkdir dist",
-    "build": "npm run clean && webpack"
+    "build": "npm run clean && webpack --mode development",
+    "installer": "npm install -D",
+    "build_init": "npm run installer && webpack"
   },
   "repository": {
     "type": "git",
