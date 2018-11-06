@@ -8,8 +8,10 @@ const slotName = 'message-input';
 
 const template = `
   <style>${shadowStyles.toString()}</style>
+
+  <div class="result"></div>
+
   <form class="form_drop">
-    <div class="result"></div>
     <label>Information:</label><br>
     <form-input name="message_text" placeholder="Your username" slot="${slotName}">
       <span slot="icon"></span>
@@ -32,6 +34,7 @@ const template = `
     <label>File:</label><br>
     <input type="file" class="file_input"><br>
     <img src="" class="picture" width="400">
+    <div class="loading"></div>
 
   </form>
 `;
@@ -63,6 +66,7 @@ class MessageForm extends HTMLElement {
     const infile = this.shadowRoot.querySelector('.file_input');
     const drop = this.shadowRoot.querySelector('.form_drop');
 
+    const data = new FormData();
     message.innerHTML = localStorage.getItem('message');
     this._elements = {
       form,
@@ -70,6 +74,7 @@ class MessageForm extends HTMLElement {
       geoposition,
       infile,
       drop,
+      data,
     };
   }
 
@@ -86,10 +91,33 @@ class MessageForm extends HTMLElement {
   }
 
   _onSubmit(event) {
-    this._elements.message.innerText = Array.from(this._elements.form.elements).map(
+    const string = Array.from(this._elements.form.elements).map(
       el => el.value,
-    ).join(', ');
+    );
+    this._elements.message.innerText = string.join(', ');
+
+    this._elements.data.set('username', string[0]);
+    this._elements.data.set('email', string[1]);
+    this._elements.data.set('name', string[2]);
+    this._elements.data.set('birthday', string[3]);
+
     localStorage.setItem('message', this._elements.message.innerText);
+
+    const loadInf = this.shadowRoot.querySelector('.loading');
+    loadInf.innerText = 'Loading';
+
+    fetch('http://httpbin.org/post', { // Заглушка вместо страницы сервера http://localhost:8000/questions/create
+      method: 'POST',
+      body: this._elements.data,
+      headers: { 'Access-Control-Allow-Origin': '/' },
+    }).then((response) => {
+      if (response.ok) {
+        loadInf.innerText = 'Loaded';
+      }
+    }).catch(() => {
+      loadInf.innerText = 'An error has occurred';
+    });
+
     event.preventDefault();
     return false;
   }
@@ -104,9 +132,11 @@ class MessageForm extends HTMLElement {
     const geoPromise = getPosition();
     geoPromise
       .then((position) => {
+        this._elements.data.set('geolocation', `${position.coords.latitude}; ${position.coords.longitude}`);
         this._elements.geoposition.setAttribute('value', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
       })
       .catch((err) => {
+        this._elements.data.set('geolocation', `${err.message}`);
         this._elements.geoposition.setAttribute('value', `${err.message}`);
       });
     event.preventDefault();
@@ -116,6 +146,10 @@ class MessageForm extends HTMLElement {
   _onFile(event) {
     const miniature = this.shadowRoot.querySelector('.picture');
     const url = URL.createObjectURL(this.shadowRoot.querySelector('input[class=file_input]').files[0]);
+
+    this._elements.data.set('file', this.shadowRoot.querySelector('input[class=file_input]').files[0]);
+
+    miniature.onload = () => URL.revokeObjectURL(url);
     miniature.src = url;
     event.preventDefault();
     return false;
@@ -130,6 +164,10 @@ class MessageForm extends HTMLElement {
   _onDrop(event) {
     const miniature = this.shadowRoot.querySelector('.picture');
     const url = URL.createObjectURL(event.dataTransfer.files[0]);
+
+    this._elements.data.set('file', event.dataTransfer.files[0]);
+
+    miniature.onload = () => URL.revokeObjectURL(url);
     miniature.src = url;
     event.stopPropagation();
     event.preventDefault();

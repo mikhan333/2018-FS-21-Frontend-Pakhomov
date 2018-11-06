@@ -32,3 +32,8 @@ label {
 	font-size: 140%;
     padding: 10px;
 }
+
+.loading {
+	padding: 10px;
+    font-size: 120%;
+}
