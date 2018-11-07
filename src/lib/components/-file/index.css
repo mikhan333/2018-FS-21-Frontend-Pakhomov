@@ -1,0 +1,10 @@
+.file_input {
+	background-color: gray;
+	margin: 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.picture {
+	margin: 10px;
+}
