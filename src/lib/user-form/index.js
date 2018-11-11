@@ -72,17 +72,19 @@ export class MessageForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit } onKeyPress={ this.handleKeyPress}>
-        <label>Information:</label>
-        <FormInput name="username" label="Username: " placeholder="Your username" getValue={ this.getUsername }/>
-        <FormInput name="email" label="Email: " placeholder="Your email" getValue={ this.getEmail }/>
-        <GeoLocation name="coords" getGeo={ this.getGeo }/>
-        <FileInput name="file" getFile={ this.getFile }/>
-        <div>
-          <input type="submit" className="submit" value="Submit" />
-          <b className="loading">{ this.state.status }</b>
-        </div>
-      </form>
+      <div className="user_form">
+        <form onSubmit={ this.handleSubmit } onKeyPress={ this.handleKeyPress}>
+          <label>Information:</label>
+          <FormInput name="username" label="Username: " placeholder="Your username" getValue={ this.getUsername }/>
+          <FormInput name="email" label="Email: " placeholder="Your email" getValue={ this.getEmail }/>
+          <GeoLocation name="coords" getGeo={ this.getGeo }/>
+          <FileInput name="file" getFile={ this.getFile }/>
+          <div>
+            <input type="submit" className="submit" value="Submit" />
+            <b className="loading">{ this.state.status }</b>
+          </div>
+        </form>
+      </div>
     );
   }
 }
