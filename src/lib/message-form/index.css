@@ -1,0 +1,26 @@
+.form_input {
+	width: 50%;
+	padding: 10px;
+    margin: 10px;
+    border: 2px solid black;
+	border-radius: 3px;
+}
+
+label {
+	font-size: 140%;
+    padding: 10px;
+}
+
+.submit{
+	padding: 10px;
+	margin: 10px;
+	font-size: 110%;
+	border: 2px solid black;
+	border-radius: 3px;
+	background: green;
+}
+
+.loading{
+	margin-left: 10px;
+    font-size: 110%;
+}
