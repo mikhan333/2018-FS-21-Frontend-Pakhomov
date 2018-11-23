@@ -5,7 +5,7 @@ export class FooterLayout extends Component{
   render() {
     return (
       <div className="Footer">
-        <p>Created in Chine, by cleaver people</p>
+        <p className>Created in Chine, by cleaver people</p>
       </div>
     );
   }
