@@ -2,6 +2,13 @@
   text-align: center;
 } */
 
+.App {
+  position: relative;
+  min-height: 100%;
+}
+
 .main_part {
-  padding: 15px 15px 5px 30px;
+  padding: 1% 1% 1% 2%;
+  height: 100%;
+  padding-bottom: 90px;
 };
