@@ -1,0 +1,15 @@
+/* .Content {
+    margin-top: 20px;
+    text-align: center;
+} */
+
+.App {
+    position: relative;
+    min-height: 100%;
+  }
+
+.Content {
+    padding: 1% 1% 1% 2%;
+    height: 100%;
+    padding-bottom: 90px;
+};

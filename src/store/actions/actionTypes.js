@@ -1,0 +1,14 @@
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';
+
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_REGISTER = 'USER_REGISTER';
+
+export const CATEGORY_REMOVE = 'CATEGORY_REMOVE';
+export const CATEGORY_ADD = 'CATEGORY_ADD';
+export const CATEGORY_GETALL = 'CATEGORY_GETALL';
+
+export const QUESTION_GET_ONCTR = 'QUESTION_GET_ONCTR';
+export const QUESTION_GETALL = 'QUESTION_GETALL';
